@@ -6,7 +6,7 @@ export const generateTripPlan = async (finalPrompt) => {
       const genAI = new GoogleGenerativeAI(apiKey);
  
       const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash-thinking-exp-01-21", // Gemini Flash 1.5
+        model: "gemini-2.0-flash-thinking-exp-01-21", 
       });
 
       const result = await model.generateContent({
@@ -26,7 +26,7 @@ export const generateTripPlan = async (finalPrompt) => {
       }
 
     } catch (error) {
-      console.error("Error generating trip plan:", error);
+      console.error("Error in generating trip plan:", error);
       throw error;
     }
   };
