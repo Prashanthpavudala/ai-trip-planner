@@ -54,6 +54,7 @@ function CreateTrip() {
     const user = localStorage.getItem('user');
     if (!user) {
       setOpenDialog(true);
+      return;
     }
 
     if (!formData?.noOfDays || formData?.noOfDays > 50 || !formData?.location || !formData?.budget || !formData?.traveler) {
