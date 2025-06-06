@@ -9,6 +9,7 @@ import Header from './components/custom/Header.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import ViewTrip from '../src/view-trip/[tripId]/ViewTrip.jsx'
 import MyTrip from './my-trips/MyTrip.jsx'
+import { Navigate } from 'react-router-dom'
 
 const router =createBrowserRouter([
   {
@@ -26,7 +27,13 @@ const router =createBrowserRouter([
   {
     path:'/my-trips',
     element:<MyTrip/>
-  }
+  },
+   //fallback route i.e, redirect to home
+ {
+   path:'*',
+   element: <Navigate to='/' replace />
+ }
+
 ]) 
 
 

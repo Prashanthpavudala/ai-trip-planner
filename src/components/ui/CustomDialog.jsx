@@ -2,13 +2,21 @@
 
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
-
+import { IoClose } from "react-icons/io5";
 
 export const CustomDialog = ({ isOpen, onClose, login }) => {
 
   return (
     <div className={`${isOpen ? "fixed inset-0 flex items-center justify-center bg-black/50" : "hidden"}`}>
-      <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-96 relative">
+        {/* Close Button */}
+        <button
+          className="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <IoClose />
+        </button>
         <div className="flex flex-col items-center">
 
           <img src="/logo.svg" alt="Logo" className="w-16 h-16 mb-4" />
