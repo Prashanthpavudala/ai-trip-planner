@@ -12,11 +12,16 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from '../service/FirebaseConfig';
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useNavigate, useNavigation } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 function CreateTrip() {
 
   const [place, setPlace] = useState();
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({
+    dateRange: [null, null], 
+  });
+
   const [toastMessage, setToastMessage] = useState('');
   const [toastOpen, setToastOpen] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
@@ -57,16 +62,18 @@ function CreateTrip() {
       return;
     }
 
-    if (!formData?.noOfDays || formData?.noOfDays > 50 || !formData?.location || !formData?.budget || !formData?.traveler) {
+    if (!formData.dateRange[0] || !formData.dateRange[1] || !formData?.noOfDays || !formData?.location || !formData?.budget || !formData?.traveler) {
       setToastMessage('Please fill all details !!');
       setToastOpen(true);
       return;
     }
     setLoading(true);
-    // console.log(formData);
+    console.log(formData);
 
     const FINAL_PROMPT = AI_PROMPT
       .replace('{location}', formData?.location?.label)
+      .replace('{fromDate}', formData?.dateRange?.[0]?.toLocaleDateString())
+      .replace('{toDate}', formData?.dateRange?.[1]?.toLocaleDateString())
       .replaceAll('{totalDays}', formData?.noOfDays)
       .replace('{traveler}', formData?.traveler)
       .replace('{budget}', formData?.budget)
@@ -122,12 +129,33 @@ function CreateTrip() {
       </div>
 
 
-      <div>
+      <h2 className='text-xl my-3 font-medium'> Select your travel Dates</h2>
+      <DatePicker
+        selectsRange
+        startDate={formData.dateRange[0]}
+        endDate={formData.dateRange[1]}
+        onChange={(update) => {
+          const [start, end] = update;
+          const days = start && end ? Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1 : null;
+          setFormData((prev) => ({
+            ...prev,
+            dateRange: update,
+            noOfDays: days,
+          }));
+        }}
+        minDate={new Date()}
+        dateFormat="dd MMM yyyy"
+        placeholderText="Choose date range"
+        className="text-sm border border-gray-300 rounded-md px-3 py-[6px] w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+
+      {/* <div>
         <h2 className='text-xl my-3 font-medium'>How many days are you planning your trip ?</h2>
         <Input placeholder={'Ex.3'} type="number"
           onChange={(e) => handleInputChange('noOfDays', e.target.value)}
         ></Input>
-      </div>
+      </div> */}
 
 
       <div>
