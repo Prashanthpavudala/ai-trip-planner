@@ -129,7 +129,7 @@ function CreateTrip() {
       </div>
 
 
-      <h2 className='text-xl my-3 font-medium'> Select your travel Dates</h2>
+      <h2 className='text-xl my-3 font-medium'> What are your travel dates for this adventure?</h2>
       <DatePicker
         selectsRange
         startDate={formData.dateRange[0]}
@@ -145,7 +145,7 @@ function CreateTrip() {
         }}
         minDate={new Date()}
         dateFormat="dd MMM yyyy"
-        placeholderText="Choose date range"
+        placeholderText="  Choose Date range ...."
         className="text-sm border border-gray-300 rounded-md px-3 py-[6px] w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
 
@@ -176,7 +176,7 @@ function CreateTrip() {
       </div>
 
       <div>
-        <h2 className='text-xl my-3 font-medium'>Who do you plan on traveling with on your next adventure ?</h2>
+        <h2 className='text-xl my-3 font-medium'>Who do you plan on traveling with on your this adventure ?</h2>
         <div className='grid grid-cols-3  gap-5 mt-5'>
           {SelectTravelsList.map((item, index) =>
             <div key={index}
@@ -208,3 +208,8 @@ function CreateTrip() {
 }
 
 export default CreateTrip;
+
+
+
+
+/*Execute this : http://localhost:5173/view-trip/1750617338272*/
