@@ -7,7 +7,7 @@ import { db } from '../../service/FirebaseConfig';
 import InfoSection from '../components/InfoSection';
 import Hotels from '../components/Hotels';
 import Itinerary from '../components/Itinerary';
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 
 function ViewTrip() {
 
