@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { Button } from "../ui/Button";
-import { Popover } from '../ui/PopOver';
+import { Popover } from '../ui/Popover';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import CustomDialog from '../ui/CustomDialog';
